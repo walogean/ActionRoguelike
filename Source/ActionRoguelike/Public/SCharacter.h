@@ -13,13 +13,18 @@ UCLASS()
 class ACTIONROGUELIKE_API ASCharacter : public ACharacter
 {
 	GENERATED_BODY()
-
+	
+protected:
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<AActor> ProjectileClass;
+	
 public:
 	// Sets default values for this character's properties
 	ASCharacter();
 
 protected:
-
+	
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* SpringArmComp;
 	
@@ -30,6 +35,14 @@ protected:
 	virtual void BeginPlay() override;
 	
 	void MoveForward(float X);
+	void MoveRight(float X);
+	void PrimaryAttack();
+	void StartJump();
+	void StopJump();
+	void LookUp(float X);
+	
+	UPROPERTY(EditAnywhere, Category = "Mouse Sens")
+	float LookUpSens;
 
 public:	
 	// Called every frame
